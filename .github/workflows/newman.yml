@@ -13,5 +13,5 @@ jobs:
       - uses: matt-ball/newman-action@master
         with:
           #collection: ./Postman Collections/postman_collection.json
-          collection: https://www.getpostman.com/collections/726ff263231f4c6c1822
+          collection: https://www.getpostman.com/collections/726ff263231f4c6c1822 --insecure --global-var "url=http://localhost"
  
