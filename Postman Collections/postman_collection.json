@@ -1,0 +1,90 @@
+{
+  "info": {
+    "_postman_id": "7c42ef2c-c571-48a0-af9a-fefbcdd5cae9",
+    "name": "Collection 1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "cb25d51b-dc83-459b-aeb2-3ba144b0db51",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "470a1bb0-1ee2-4913-916a-7a5d3721f3fb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "localhost:3000/login"
+      },
+      "response": []
+    },
+    {
+      "name": "GET Register",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "700160df-cdc3-438e-9e70-0f6407131fb7",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "1b04b940-6382-4ef8-aba2-0849ad8dafbc",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "localhost:3000/register"
+      },
+      "response": []
+    },
+    {
+      "name": "GET Hello",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d4bd7081-c770-4876-aacc-b598ae72709b",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "831cfb0d-c9f9-48dd-bf39-08431139cbcd",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "localhost:3000/hello"
+      },
+      "response": []
+    }
+  ]
+}
