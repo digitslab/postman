@@ -10,23 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-#       - uses: actions/checkout@master
-#       - uses: matt-ball/newman-action@master
-#         with:
-#           #collection: ./Postman Collections/postman_collection.json
-#           #collection: https://www.getpostman.com/collections/726ff263231f4c6c1822 --insecure --global-var "url=http://localhost"
-#           collection: https://www.getpostman.com/collections/726ff263231f4c6c1822
+      - uses: actions/checkout@master
+      - uses: matt-ball/newman-action@master
+        with:
+          collection: ./Postman Collections/Cluster_IP.json
+          #collection: ./Postman Collections/postman_collection.json
+          #collection: https://www.getpostman.com/collections/726ff263231f4c6c1822 --insecure --global-var "url=http://localhost"
+          #collection: https://www.getpostman.com/collections/726ff263231f4c6c1822
 
-    - name: Checkout
-      uses: actions/checkout@v1
+#     - name: Checkout
+#       uses: actions/checkout@v1
 
-    - name: Run API Tests
-      id: run-newman
-      uses: anthonyvscode/newman-action@v1
-      with:
-       collection: https://www.getpostman.com/collections/726ff263231f4c6c1822
-       reporters: cli
+#     - name: Run API Tests
+#       id: run-newman
+#       uses: anthonyvscode/newman-action@v1
+#       with:
+#        collection: https://www.getpostman.com/collections/726ff263231f4c6c1822
+#        reporters: cli
 
-    - name: Output summary to console
-      run: echo ${{ steps.run-newman.outputs.summary }}
+#     - name: Output summary to console
+#       run: echo ${{ steps.run-newman.outputs.summary }}
 
