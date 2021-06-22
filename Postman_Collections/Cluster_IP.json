@@ -21,14 +21,14 @@
           }
         }
       ],
-      "_postman_id": "30f90d6c-6bf8-44bd-85d1-49904acd25a1",
+      "id": "30f90d6c-6bf8-44bd-85d1-49904acd25a1",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
       "request": {
         "method": "GET",
         "header": [],
-        "url": "http://35.188.156.160/login"
+        "url": "http://34.134.131.200 /login"
       },
       "response": []
     },
@@ -48,7 +48,7 @@
           }
         }
       ],
-      "_postman_id": "fc30b29f-0828-41c1-9f22-25d752e73421",
+      "id": "fc30b29f-0828-41c1-9f22-25d752e73421",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -75,7 +75,7 @@
           }
         }
       ],
-      "_postman_id": "c9759494-3927-400d-b018-5f1e27d657df",
+      "id": "c9759494-3927-400d-b018-5f1e27d657df",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
