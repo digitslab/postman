@@ -55,7 +55,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": "http://34.134.131.200/register"
+        "url": "http://ns.sreyo.in/register"
       },
       "response": []
     },
