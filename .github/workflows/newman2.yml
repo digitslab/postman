@@ -36,6 +36,16 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${{ github.event.before }}"  
         
+      - name: Tag
+        id: autotagger
+        uses: butlerlogic/action-autotag@stable
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" 
+          
+      - name: get tag output  
+        run: echo "${{ steps.autotagger.outputs.tagname }}"   
+          
+        
       # Runs a set of commands using the runners shell      
       - name: Install Newman
         run: |
