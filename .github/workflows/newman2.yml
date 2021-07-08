@@ -40,7 +40,7 @@ jobs:
         id: autotagger
         uses: butlerlogic/action-autotag@stable
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" 
+          GITHUB_TOKEN: "${{ secrets.TOKEN }}" 
           
       - name: get tag output  
         run: echo "${{ steps.autotagger.outputs.tagname }}"   
