@@ -34,7 +34,7 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "${github.event.before}"  
+        run: echo "${{ github.event.before }}"  
         
       # Runs a set of commands using the runners shell      
       - name: Install Newman
