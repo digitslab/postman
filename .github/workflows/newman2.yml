@@ -41,10 +41,23 @@ jobs:
         run: mkdir Results
         
       - name: Run Collection  
-        run: newman run ./Postman_Collections/Cluster_IP.json
+        run: |
+          # newman run ./Postman_Collections/Cluster_IP.json
+          echo "::set-output name=newman::$(newman run ./Postman_Collections/Cluster_IP.json)\n"
+        id: tests  
+        #job_b:
+#     runs-on: ubuntu-latest
+#     needs: job_a
+#     if: needs.job_a.outputs.null_value
+#     steps:
+#       - run: echo "We've ensured this job will be skipped"
 #         run: newman run https://www.getpostman.com/collections/726ff263231f4c6c1822
 #         run: newman run <collection filename/url/API> -e <env filename/API> -r htmlextra --reporter-htmlextra-export Results/APIcoreServices_TestReport.html --reporter-htmlextra-title "API Test Report"
 
+      # get newman output
+      - name: Get the output
+        run: echo "${{ steps.tests.outputs.newman }}"
+        
       - name: Output Run Details
         uses: actions/upload-artifact@v2
         with:
