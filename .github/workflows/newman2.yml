@@ -43,7 +43,7 @@ jobs:
           #git reset --hard "${{ github.event.before }}"
           #git reset --hard "5f3d462"
           #git revert HEAD~1..HEAD
-          git rebase 9aed8c42dca59d21e1e949a76eb6ffe39bcff140
+          git revert 64651a6d96704dd0372fbcd8331f53b42b08f847
 
 #         uses: author/action-rollback@stable 
 #         with:
