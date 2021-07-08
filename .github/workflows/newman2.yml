@@ -45,7 +45,7 @@ jobs:
           #git revert HEAD~1..HEAD
           git rebase 9aed8c42dca59d21e1e949a76eb6ffe39bcff140
 
-#         uses: author/action-rollback@stable
+#         uses: author/action-rollback@stable 
 #         with:
 #           # Using a known release ID
 #           release_id: ${{ github.event.before }}
