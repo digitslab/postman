@@ -64,7 +64,7 @@ jobs:
         if: failure()
         run: |
           #git reset --hard "${{ github.event.before }}"
-          git reset --hard 5f3d462
+          git reset --hard "5f3d462"
 #         uses: author/action-rollback@stable
 #         with:
 #           # Using a known release ID
