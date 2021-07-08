@@ -31,10 +31,10 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v1
         
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"  
+#       - name: Dump GitHub context
+#         env:
+#           GITHUB_CONTEXT: ${{ toJson(github) }}
+#         run: echo "$GITHUB_CONTEXT"  
         
       # Runs a set of commands using the runners shell      
       - name: Install Newman
@@ -50,8 +50,16 @@ jobs:
 #         run: newman run https://www.getpostman.com/collections/726ff263231f4c6c1822
 #         run: newman run <collection filename/url/API> -e <env filename/API> -r htmlextra --reporter-htmlextra-export Results/APIcoreServices_TestReport.html --reporter-htmlextra-title "API Test Report"
       
-#       - name: Rollback Release
-#         if: failure()
+      - name: Rollback Release
+        if: failure()
+        uses: author/action-rollback@stable
+        with:
+          # Using a known release ID
+          release_id: ${{ github.event.before }}
+          #  If the release does not exist but the tag does, setting this to true will remove the tag.
+          delete_orphan_tag: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 # #         uses: exions/undo-push@v1
 #         uses: srt32/revert@v0.0.1
 #         env:
