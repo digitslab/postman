@@ -35,38 +35,16 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${{ github.event.before }}"  
-        
-#       - name: Tag
-#         id: autotagger
-#         uses: butlerlogic/action-autotag@stable
-#         with:
-#           GITHUB_TOKEN: "${{ secrets.TOKEN }}" 
-          
-#       - name: get tag output  
-#         run: echo "${{ steps.autotagger.outputs.tagname }}"   
-          
-        
-      # Runs a set of commands using the runners shell      
-      - name: Install Newman
-        run: |
-          npm install -g newman
-          npm install -g newman-reporter-htmlextra
-     
-      - name: Make dir for test result
-        run: mkdir Results
-        
-      - name: Run Collection  
-        run: newman run ./Postman_Collections/Cluster_IP.json
-#         run: newman run https://www.getpostman.com/collections/726ff263231f4c6c1822
-#         run: newman run <collection filename/url/API> -e <env filename/API> -r htmlextra --reporter-htmlextra-export Results/APIcoreServices_TestReport.html --reporter-htmlextra-title "API Test Report"
       
+     
       - name: Rollback Release
-        if: failure()
+        #if: failure()
         run: |
           #git reset --hard "${{ github.event.before }}"
           #git reset --hard "5f3d462"
           #git revert HEAD~1..HEAD
-          git revert HEAD@{1}
+          git rebase 9aed8c42dca59d21e1e949a76eb6ffe39bcff140
+
 #         uses: author/action-rollback@stable
 #         with:
 #           # Using a known release ID
