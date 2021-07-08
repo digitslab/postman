@@ -48,8 +48,7 @@ jobs:
       - name: Rollback Release
         if: failure()
 #         uses: exions/undo-push@v1
-#         uses: srt32/revert@v0.0.1
-        uses: Neethusnair/revert@v0.0.1
+        uses: srt32/revert@v0.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           
