@@ -63,7 +63,8 @@ jobs:
       - name: Rollback Release
         if: failure()
         run: |
-          git reset --hard "${{ github.event.before }}"
+          #git reset --hard "${{ github.event.before }}"
+          git reset --hard
 #         uses: author/action-rollback@stable
 #         with:
 #           # Using a known release ID
