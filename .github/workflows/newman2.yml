@@ -40,17 +40,57 @@ jobs:
       - name: Make dir for test result
         run: mkdir Results
         
+      - name: Tag
+        id: autotagger
+        uses: butlerlogic/action-autotag@stable
+        with:
+          GITHUB_TOKEN: "${{ secrets.TOKEN }}"
+      
+      - name: Release
+        id: create_release
+        if: steps.autotagger.outputs.tagname != ''
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          tag_name: ${{ steps.autotagger.outputs.tagname }}
+          release_name: Version ${{ steps.autotagger.outputs.version }}
+          body: ${{ steps.autotagger.outputs.tagmessage }}
+          draft: false
+          prerelease: true
+
+#       - name: Publish
+#         id: publish_npm
+#         if: steps.autotagger.outputs.tagname != ''
+#         uses: author/action-publish@stable
+#         env:
+#           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+      
       - name: Run Collection  
         run: newman run ./Postman_Collections/Cluster_IP.json
+
+      - name: Rollback Release
+        if: failure() && steps.create_release.outputs.id != ''
+        uses: author/action-rollback@stable
+        with:
+          # Using a known release ID
+          id: ${{ steps.create_release.id }}
+          # Using a tag name
+          tag: ${{ steps.autotagger.outputs.tagname }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}  
+        
+#       - name: Run Collection  
+#         run: newman run ./Postman_Collections/Cluster_IP.json
 #         run: newman run https://www.getpostman.com/collections/726ff263231f4c6c1822
 #         run: newman run <collection filename/url/API> -e <env filename/API> -r htmlextra --reporter-htmlextra-export Results/APIcoreServices_TestReport.html --reporter-htmlextra-title "API Test Report"
       
-      - name: Rollback Release
-        if: failure()
-#         uses: exions/undo-push@v1
-        uses: srt32/revert@v0.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+#       - name: Rollback Release
+#         if: failure()
+# #         uses: exions/undo-push@v1
+#         uses: srt32/revert@v0.0.1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           
       - name: Output Run Details
         uses: actions/upload-artifact@v2
