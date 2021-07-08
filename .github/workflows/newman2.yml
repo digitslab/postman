@@ -36,14 +36,14 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${{ github.event.before }}"  
         
-      - name: Tag
-        id: autotagger
-        uses: butlerlogic/action-autotag@stable
-        with:
-          GITHUB_TOKEN: "${{ secrets.TOKEN }}" 
+#       - name: Tag
+#         id: autotagger
+#         uses: butlerlogic/action-autotag@stable
+#         with:
+#           GITHUB_TOKEN: "${{ secrets.TOKEN }}" 
           
-      - name: get tag output  
-        run: echo "${{ steps.autotagger.outputs.tagname }}"   
+#       - name: get tag output  
+#         run: echo "${{ steps.autotagger.outputs.tagname }}"   
           
         
       # Runs a set of commands using the runners shell      
@@ -62,14 +62,16 @@ jobs:
       
       - name: Rollback Release
         if: failure()
-        uses: author/action-rollback@stable
-        with:
-          # Using a known release ID
-          release_id: ${{ github.event.before }}
-#           #  If the release does not exist but the tag does, setting this to true will remove the tag.
-#           delete_orphan_tag: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          git reset --hard ${{ github.event.before }}
+#         uses: author/action-rollback@stable
+#         with:
+#           # Using a known release ID
+#           release_id: ${{ github.event.before }}
+# #           #  If the release does not exist but the tag does, setting this to true will remove the tag.
+# #           delete_orphan_tag: true
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.TOKEN }}
       
       
 #       - name: Rollback Release
